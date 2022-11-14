@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    My Blog
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'blog/post.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section id="welcome">
+        <header>
+            <img src="{% static 'blog/images/ayush.jpg' %}" alt="Ayush - The Author of This Blog">
+            <h2>AYUSH'S BLOG</h2>
+        </header>
+        <p>Hi, I am Ayush and I love to blog about tech and the world</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My Latest Thoughts</h2>
+        <ul>
+            {% for post in posts %}
+                {% include "blog/includes/post.html" with title=post.title slug=post.slug post_image=post.image excerpt=post.excerpt %}
+            {% endfor %}
+        </ul>
+
+    </section>
+
+    <section id="about">
+        <h2>What I Do</h2>
+        <p>I love programming in python and also i love hiking in the mountains and exploring new technologies</p>
+        <p>My goal is to keep on growing as a software engineer - and if i could help you
+            do the same, I'd be very delighted.
+        </p>
+    </section>
+{% endblock %}
